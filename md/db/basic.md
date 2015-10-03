@@ -12,19 +12,19 @@ IndexedDB 是浏览器中的数据库
 # 概述
 
 - IndexedDB is an indexed table system, not a relational database access system.
-- IndexedDB lets you store and retrieve objects that are indexed with a "key".
-- All changes that you make to the database happen within transactions.
+- IndexedDB lets you store and retrieve objects that are indexed with a "[key](#key)".
+- All changes that you make to the database happen within [transactions](#transaction).
 - IndexedDB follows [same-origin policy](http://www.w3.org/Security/wiki/Same_Origin_Policy).
-- IndexedDB is an asynchronous api that can be used in most contexts.
+- IndexedDB is an [asynchronous api](#asynchronousapi) that can be used in most contexts.
 - 竞争者 WebSQL 死于 2010-11-18
 
 # 基本概念
 
 ## Key-value pairs
 
-- IndexedDB database store key-value pairs
+- IndexedDB database store [key-value](#keyandvalue) pairs
 - The values can be complex structured objects, and keys can be properties of those objects.
-- You can create indexes that use any property of the objects for quick searching, as well as sorted enumeration.
+- You can create [indexes](#index) for quick searching, as well as sorted enumeration.
 
 ## Transactional database model
 
@@ -37,7 +37,7 @@ IndexedDB 是浏览器中的数据库
 ## Asynchronous API
 
 - You "request" that a database operation happens.
-- You get notified by a DOM event when the operation finishes, and the type of event you get lets you know if the operation successed or failed.
+- You get notified by a DOM event when the operation finishes, and the type of event lets you know if the operation successed or failed.
 
 ## IndexedDB Requests
 
@@ -60,12 +60,12 @@ IndexedDB 是浏览器中的数据库
 
 - [object database](https://en.wikipedia.org/wiki/Object_database)
 - You create an object store for a type of data and simply persist JavaScript objects to that store.
-- Each object store can have a collection of indexes that makes it efficient to query and iterate across.
+- Each object store can have a collection of [indexes](#index) that makes it efficient to query and iterate across.
 
 ## NoSQL
 
 - [NoSQL](https://en.wikipedia.org/wiki/NoSQL)
-- It uses queries on an index that produces a cursor, which you use to iterate across the result set.
+- It uses queries on an [index](#index) that produces a [cursor](#cursor), which you use to iterate across the result set.
 
 ## Same-origin
 
@@ -85,7 +85,7 @@ A repository of infomation, comprising one or more [object stores](#objectstore)
 
 ### object store
 
-- Object store holds records, which are key-value pairs.
+- Object store holds records, which are [key-value](#keyandvalue) pairs.
 - Records are sorted according to the [keys](#key) in an ascending order.
 - Every object store have a name that is unique within its database.
 - Object store can optionally have a [key generator](#keygenerator) and a [key path](#keypath).
@@ -95,8 +95,7 @@ A repository of infomation, comprising one or more [object stores](#objectstore)
 
 - When a database is first created, its version is 1.
 - The only way to change the version is by opening it with a greater version than the current one.
-    - This will start a `versionchange` transaction and fire an `upgradeneeded` event.
-    - The only place where the schema of the database can be updated is inside the handler of that event.
+    - This will start a `versionchange` transaction and fire an `upgradeneeded` event. The only place where the schema of the database can be updated is inside the handler of that event.
 
 ### database connection
 
@@ -108,8 +107,7 @@ Its created by opening a databse. A database can have multiple connections at th
 - Any reading or changing of records in a database must happen in a transaction.
 - A database connection can have several active transaction at a time.
 - Three modes: `readwrite`, `readonly`, and `versionchange`.
-- The [scope](#scope) of a transaction is defined at creation, which determines which object sotres the transaction can interact with.
-- Writing transactions can not have overlapping scopes, however, reading transactions can.
+- The [scope](#scope) of a transaction is defined at creation, which determines which object sotres and indexes the transaction can interact with.
 
 ### request
 
@@ -118,7 +116,7 @@ Every request represents one read or write operation.
 ### index
 
 - An index is a specialized object store for looking up record in another object store, called the referenced object store.
-- The value part of its records is the key part of a record in the referenced object store.
+- The [value](#value) part of its records is the [key](#key) part of a record in the referenced object store.
 - The records in an index are automatically populated whenever records in the referenced object store are inserted, updated, or deleted.
 - Alternatively, you can also look up records in an object store using [key](#key).
 
@@ -128,7 +126,7 @@ Every request represents one read or write operation.
 
 - A value by which records are organized and retrieved in object store.
 - Ojbect store can derive the key from one of three sources: a [key generator](#keygenerator), a [key path](#keypath), or an explicitly specified value.
-- The key must be greator than the one before it.
+- The key must be greater than the one before it (i.e. ascending).
 - Each record in an object store must have a key that is unique within the object store, so you cannot have multiple records with the same key.
 - A key can be: string, date, float, and array.
 - Alternatively, you can look up records in an object store using [index](#index);
@@ -169,8 +167,7 @@ Every request represents one read or write operation.
 
 - The set of [object stores](#objectstore) and [indexes](#index) to which a [transaction](#transaction) applies.
 - The scopes of `readonly` transactions can overlap.
-- The scopes of `writing` transactions cannot overlap.
-- You can still start several `writing` transactions with the same scope at the same time, but they just queue up and execute one after another.
+- The scopes of `writing` transactions cannot overlap. You can still start several `writing` transactions with the same scope at the same time, but they just queue up and execute one after another.
 
 ### key range
 
@@ -186,3 +183,9 @@ Every request represents one read or write operation.
 # Limitations
 
 - Full text searching. The API does not have an `LIKE` operator.
+
+# Next
+
+- Tutorial: [Using IndexedDB](tutorial.md)
+- Reference: [IndexedDB API reference](api.md)
+- Specification: [IndexedDB Database API Specification](http://www.w3.org/TR/IndexedDB/)
