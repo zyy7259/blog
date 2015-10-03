@@ -5,9 +5,9 @@ IndexedDB 是浏览器中的数据库
 # about this doc
 
 本文档会介绍 IndexedDB 的 concepts and terminology.
-- 如果想知道怎么使用 API，请参考[Using IndexedDB](./tutorial.md)
-- 如果想查阅详细的 API 文档，请参考[IndexedDB API](./api.md)
-- 如果想了解浏览器如何存储数据以及 IndexedDB 的限制，请参考[background](./background.md)
+- 如果想知道怎么使用 API，请参考[Using IndexedDB](tutorial.md)
+- 如果想查阅详细的 API 文档，请参考[IndexedDB API](api.md)
+- 如果想了解浏览器如何存储数据以及 IndexedDB 的限制，请参考[background](background.md)
 
 # 概述
 
