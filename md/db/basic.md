@@ -1,10 +1,11 @@
 # What is IndexedDB
 
 IndexedDB 是浏览器中的数据库
+- IndexedDB is disabled in private mode of firefox.
 
-# about this doc
+# About this document
 
-本文档会介绍 IndexedDB 的 concepts and terminology.
+本文介绍 IndexedDB 的 concepts and terminology.
 - 如果想知道怎么使用 API，请参考[Using IndexedDB](tutorial.md)
 - 如果想查阅详细的 API 文档，请参考[IndexedDB API](api.md)
 - 如果想了解浏览器如何存储数据以及 IndexedDB 的限制，请参考[background](background.md)
@@ -184,8 +185,10 @@ Every request represents one read or write operation.
 
 - Full text searching. The API does not have an `LIKE` operator.
 
-# Next
+# See also
 
+- Source: [Basic Concepts Behind IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Basic_Concepts_Behind_IndexedDB)
 - Tutorial: [Using IndexedDB](tutorial.md)
+- Limit: [limit](limit.md)
 - Reference: [IndexedDB API reference](api.md)
 - Specification: [IndexedDB Database API Specification](http://www.w3.org/TR/IndexedDB/)
